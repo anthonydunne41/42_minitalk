@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adunne <adunne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 15:36:04 by adunne            #+#    #+#             */
-/*   Updated: 2022/11/27 15:31:16 by adunne           ###   ########.fr       */
+/*   Updated: 2022/11/27 19:56:09 by adunne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,24 +20,26 @@ void handler(int num) {
 }
 
 void printOne(int num) {
-	write(STDOUT_FILENO, "1\n", 2);
+	write(STDOUT_FILENO, "1", 1);
 }
 
 void printZero(int num) {
-	write(STDOUT_FILENO, "0\n", 2);
+	write(STDOUT_FILENO, "0", 1);
 }
+
+int numb = 0;
 
 int main()
 {
 	printf("%d\n", getpid());
+	usleep(100);
 	//signal(SIGINT, handler);
 	signal(SIGUSR1, printOne);
 	signal(SIGUSR2, printZero);
 	printf("\n");
-	printf("%d", getpid());
 	while (1) {
-		printf("Penis\n");
-		sleep(10);
+		printf("%d\n", numb);
+		sleep(3);
 	}
 
 	return 0;
